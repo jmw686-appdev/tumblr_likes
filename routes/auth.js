@@ -16,10 +16,14 @@ router.get('/get_likes', function(req, res, next) {
     token_secret: process.env.TUMBLR_ACCESS_SECRET
   });
 
+  likes = []
   // Show user's blog likes
   client.userLikes(function(err, data) {
-    console.log(data)
+    // console.log(data)
+    likes = data.liked_posts
+    res.render("user_likes", {likes: likes });
   });
-  res.redirect('/')
+  console.log(likes)
+  // res.redirect('/')
 });
 module.exports = router;
