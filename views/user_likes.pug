@@ -7,5 +7,7 @@ block content
         val.type
         if val.type === "photo"
           img(src=val.photos[0].original_size.url)
+        p
+          != val.caption 
     else
       li Nope
