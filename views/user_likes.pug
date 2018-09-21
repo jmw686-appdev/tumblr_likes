@@ -2,12 +2,14 @@ block content
   h1 User likes
   ul
     each val in likes
-      li= val.blog_name
-      div
-        val.type
-        if val.type === "photo"
-          img(src=val.photos[0].original_size.url)
-        p
-          != val.caption 
-    else
-      li Nope
+      div(class="like" style="padding-bottom: 2em")
+      a(href=val.post_url)
+        li= val.blog_name
+        div
+          val.type
+          if val.type === "photo"
+            img(src=val.photos[0].original_size.url)
+          else
+            li Nope
+          p
+          != val.caption
