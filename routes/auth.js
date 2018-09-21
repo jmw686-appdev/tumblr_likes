@@ -11,16 +11,15 @@ router.get('/get_likes', function(req, res, next) {
   var tumblr = require('tumblr.js');
   var client = tumblr.createClient({
     consumer_key: process.env.TUMBLR_CONSUMER,
-    consumer_secret: process.env.TUMBLR_SERCRET,
+    consumer_secret: process.env.TUMBLR_SECRET,
     token: process.env.TUMBLR_ACCESS_TOKEN,
     token_secret: process.env.TUMBLR_ACCESS_SECRET
   });
 
-  // Show user's blog names
-  client.userInfo(function(err, data) {
-    data.user.blogs.forEach(function(blog) {
-      console.log(blog.name);
-    });
+  // Show user's blog likes
+  client.userLikes(function(err, data) {
+    console.log(data)
   });
+  res.redirect('/')
 });
 module.exports = router;
