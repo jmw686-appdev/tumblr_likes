@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+
+.like {
+  text-align: center;
+  padding: 2em;
+  background-color: green;
+
+}
