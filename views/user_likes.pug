@@ -11,12 +11,13 @@ block content
               img(src=val.photos[0].original_size.url)
             else if val.type =="text"
               h4
-                = val.summary
+                != val.summary
               div
-                = val.body
+                != val.body
             else
               li Nope, not a photo
             p
-              = val.caption
-
+              != val.caption
+  if offset > 0
+    a(href="/auth/get_likes/" + (offset-40)) Previous Page
   a(href="/auth/get_likes/" + offset) Next Page
