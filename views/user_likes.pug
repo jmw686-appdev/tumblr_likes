@@ -1,22 +1,30 @@
+extends layout
+
 block content
+  nav(aria-label="breadcrumb")
+    ol(class="breadcrumb")
+      li(class="breadcrumb-item") 
+        a(href="/") Home
+      li(class="breadcrumb-item active", aria-current="page") Your Likes
   h1 User likes
   ul
     each val in likes
-      div(class="like" style="padding-bottom: 2em")
+      div(class="card like")
         a(href=val.post_url)
           li= val.blog_name
           div
             = val.type
             if val.type === "photo"
-              img(src=val.photos[0].original_size.url)
+              img(src=val.photos[0].original_size.url, class="card-img-top")
             else if val.type =="text"
               h4
                 != val.summary
-              div
-                != val.body
+              div(class="card-body")
+                p(class="card-text")
+                  != val.body
             else
               li Nope, not a photo
-            p
+            p(class="card-text")
               != val.caption
   if offset > 0
     a(href="/auth/get_likes/" + (offset-40)) Previous Page
