@@ -22,11 +22,10 @@ block content
                 != val.summary
               p(class="card-text")
                 != val.body
-                = val.type
               p(class="card-text")
                 != val.caption
         div(class="card-footer")
           button(class="btn btn-outline-dark") Unlike
-  if offset > 0
+  if offset > 20
     a(href="/auth/get_likes/" + (offset-40)) Previous Page
   a(href="/auth/get_likes/" + offset) Next Page

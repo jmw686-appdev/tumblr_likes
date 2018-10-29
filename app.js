@@ -1,17 +1,18 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-var usersRouter = require('./routes/users');
-var mongoose = require('mongoose');
-var app = express();
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const usersRouter = require('./routes/users');
+const mongoose = require('mongoose');
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +23,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// const db_conf = require('./config/db.js');
+// mongoose.connect(db_conf.uri);
+// mongoose.Promise = global.Promise
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', () => {
+//   // we're connected!
+//   console.log('connection ongoing~');
+// });
+
+const dbHost = 'mongodb://localhost:27017/test';
+mongoose.connect(dbHost, { useNewUrlParser: true });
+db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(){
+  console.log("Connected to DB");
+  //do operations which involve interacting with DB.
+});
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
