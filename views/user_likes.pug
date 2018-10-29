@@ -7,25 +7,26 @@ block content
         a(href="/") Home
       li(class="breadcrumb-item active", aria-current="page") Your Likes
   h1 User likes
-  ul
+  div(class="card-columns")
     each val in likes
-      div(class="card like")
-        a(href=val.post_url)
-          li= val.blog_name
-          div
-            = val.type
-            if val.type === "photo"
-              img(src=val.photos[0].original_size.url, class="card-img-top")
-            else if val.type =="text"
-              h4
+      div(class="card my-4")
+        div(class="card-body text-center")
+          a(href=val.post_url class="text-dark")
+            div
+              if val.type === "photo"
+                img(src=val.photos[0].original_size.url, class="card-img-top media")
+              else if val.type === "video"
+                video(controls, class="media")
+                  source(src=val.video_url)
+              h5(class="card-title")
                 != val.summary
-              div(class="card-body")
-                p(class="card-text")
-                  != val.body
-            else
-              li Nope, not a photo
-            p(class="card-text")
-              != val.caption
+              p(class="card-text")
+                != val.body
+                = val.type
+              p(class="card-text")
+                != val.caption
+        div(class="card-footer")
+          button(class="btn btn-outline-dark") Unlike
   if offset > 0
     a(href="/auth/get_likes/" + (offset-40)) Previous Page
   a(href="/auth/get_likes/" + offset) Next Page

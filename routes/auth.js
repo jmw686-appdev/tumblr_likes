@@ -43,7 +43,7 @@ router.get('/get_likes/', function(req, res, next) {
   // Show user's blog likes
 
   client.userLikes(function(err, data) {
-    // console.log(data.liked_posts)
+    console.log(data.liked_posts)
     likes = [...data.liked_posts]
     res.render("user_likes", {likes: likes, offset: 20});
   });
