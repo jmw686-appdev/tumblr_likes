@@ -1,0 +1,13 @@
+h1 Sign Up
+
+form(action="/users/sign_up")
+  div(class="form-group")
+    label(for="email") Email Address
+    input(name="email" class="form-control" id="email" placeholder="Enter Email")
+  div(class="form-group")
+    label(for="password") Password
+    input(name="password" class="form-control" id="password")
+  div(class="form-group")
+    label(for="password-confirmation") Password-confirmation
+    input(name="password-confirmation" class="form-control" id="password-confirmation")
+  button(type="submit" class="btn btn-primary") Submit
