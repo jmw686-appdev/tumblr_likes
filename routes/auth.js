@@ -23,7 +23,7 @@ router.get('/get_likes/:offset', function(req, res, next) {
   client.userLikes({offset: offset}, function(err, data) {
     // console.log(data.liked_posts)
     likes = [...data.liked_posts]
-    res.render("user_likes", {likes: likes, offset: (parseInt(offset) + 20) });
+    res.render("user/likes", {likes: likes, offset: (parseInt(offset) + 20) });
   });
   console.log(likes)
   // res.redirect('/')
@@ -45,7 +45,7 @@ router.get('/get_likes/', function(req, res, next) {
   client.userLikes(function(err, data) {
     console.log(data.liked_posts[0])
     likes = [...data.liked_posts]
-    res.render("user_likes", {likes: likes, offset: 20});
+    res.render("user/likes", {likes: likes, offset: 20});
   });
   console.log(likes)
   // res.redirect('/')
